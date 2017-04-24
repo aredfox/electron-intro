@@ -12,5 +12,5 @@
     "devDependencies": {
         "electron": "1.6.5",
         "electron-builder": "^17.0.1"
-    },
+    }
 }
