@@ -1,0 +1,16 @@
+{
+    "name": "vanilla-electron-application",
+    "description": "Vanilla Electron Application",
+    "author": "Yves Schelpe <yves.schelpe@gmail.com>",
+    "version": "0.0.1",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ./main.js",
+        "pack": "build --dir",
+        "dist": "build"
+    },
+    "devDependencies": {
+        "electron": "1.6.5",
+        "electron-builder": "^17.0.1"
+    }
+}
