@@ -29,11 +29,22 @@
         <div class="page">
             <h1>Vanilla Electron</h1>
             <p>Vanilla electron application.</p>
+            <hr/>
+            <p>
+                <button id="btnToggle">Toggle</button>
+                <input id="chkAppIcon" type="checkbox"> Include application icon
+            </p>
         </div>
     </section>
     <section id="footer">
         <span class="text">&copy; Some company 2013</span>
     </section>
+    <script>
+        const { ipcRenderer } = require('electron');
+        document.getElementById('btnToggle').addEventListener('click', function () {
+            ipcRenderer.send('toggle', document.getElementById('chkAppIcon').checked);
+        });
+    </script>
 </body>
 
 </html>
