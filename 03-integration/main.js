@@ -1,8 +1,14 @@
-const { electron, app, BrowserWindow } = require('electron');
+const { electron, app, BrowserWindow, Tray } = require('electron');
 const path = require('path');
 const url = require('url');
+const os = require('os');
+const imageFolder = path.join(__dirname, '/resources/');
+const images = {
+    'red': path.join(imageFolder, `red${os.platform() === 'darwin' ? '-16.png' : '.ico'}`)
+};
 
 let mainWindow;
+let tray;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -21,7 +27,13 @@ function createWindow() {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
+
+    createTrayIcon();
 }
+function createTrayIcon() {
+    tray = new Tray(images.red);
+}
+
 function handleActivate() {
     if (mainWindow === null) {
         createWindow();
@@ -32,7 +44,11 @@ function handleAllWindowsClosed() {
         app.quit();
     }
 }
+function handleQuit() {
+    tray.destroy();
+}
 
+app.on('will-quit', handleQuit);
 app.on('ready', createWindow);
 app.on('activate', handleActivate);
 app.on('window-all-closed', handleAllWindowsClosed);
